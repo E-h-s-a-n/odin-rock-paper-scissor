@@ -56,15 +56,53 @@ function playRound(playerSelect, computerSelect) {
             }
         }
     }
-    return result
+
+    if (result.toLowerCase() === 'win'){
+        result = `You Win this round! ${p} beats ${c}`;
+    } else {
+        result = `You Lose this round! ${c} beats ${p}`;
+    }
+
+    return result;
 }
 
-
 // play 5 round of the game
+function game(maxRound) {
+    let playerWins = 0;
+    let computerWins = 0;
+    let roundResult;
+    let player;
+    let computer;
+    
+    for (i=0; i<maxRound; i++){
+        player = getPlayerChoice();
+        computer = getComputerChoice();
+        roundResult = playRound(player, computer);
 
+        if (roundResult.toLowerCase().search('win') > 0) {
+            playerWins += 1;
+        } else if (roundResult.toLowerCase().search('lose') > 0){
+            computerWins += 1;
+        }
 
-let player = getPlayerChoice();
-let computer = getComputerChoice();
-console.log('You:', player);
-console.log('Computer:', computer);
-console.log(playRound(player, computer))
+        console.log(`Round Number: ${i+1}/${maxRound}`);
+        console.log('You:', player);
+        console.log('Computer:', computer);
+        console.log(roundResult);
+        console.log(`Score: ${playerWins} - ${computerWins}`);
+        console.log();
+    }
+
+    if (playerWins > computerWins) {
+        console.log('You Win!')
+    } else if (playerWins < computerWins) {
+        console.log('Computer Win!')
+    } else {
+        console.log('Tie Match!')
+    }
+
+    alert('Finished\nReload for another round');
+
+}
+
+game(5);
