@@ -1,7 +1,7 @@
 // read user selection
 function getPlayerChoice() {
     selection =
-    prompt("Rock or (R) \nPaper or (P) \nScissor or (S)?").toLowerCase();
+    prompt("Rock or (R) \nPaper or (P) \nScissor or (S)?", '').toLowerCase();
     
     if (selection == 'r') {
         selection = 'rock';
@@ -32,35 +32,23 @@ function getComputerChoice() {
 function playRound(playerSelect, computerSelect) {
     let p = playerSelect;
     let c = computerSelect;
-    let result = '';
+    let result = 'Lose';
     if (c == p) {
         result = "That's a Tie"
     } else {
-        if (p == 'rock') {
-            if (c == 'paper') {
-                result = 'Lose';
-            } else {
+        if (p == 'rock' && c == 'scissor') {
+            result = 'Win'
+        } else if (p == 'paper' && c == 'rock') {
                 result = 'Win';
-            }
-        } else if (p == 'paper') {
-            if (c == 'scissor') {
-                result = 'Lose';
-            } else {
+        } else if (p == 'scissor' && c == 'paper') {
                 result = 'Win';
-            }
-        } else if (p == 'scissor') {
-            if (c == 'rock') {
-                result = 'Lose';
-            } else {
-                result = 'Win';
-            }
         }
-    }
-
-    if (result.toLowerCase() === 'win'){
-        result = `You Win this round! ${p} beats ${c}`;
-    } else {
-        result = `You Lose this round! ${c} beats ${p}`;
+        
+        if (result.toLowerCase() === 'win'){
+            result = `You Win this round! ${p} beats ${c}`;
+        } else {
+            result = `You Lose this round! ${c} beats ${p}`;
+        }
     }
 
     return result;
