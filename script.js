@@ -1,7 +1,7 @@
 // read user selection
 function getPlayerChoice() {
-    selection =
-    prompt("Rock or (R) \nPaper or (P) \nScissor or (S)?", '').toLowerCase();
+    message = `${'Rock'.padEnd(8)} or  R ?\n${'Paper'.padEnd(8)} or  P ?\n${'Scissor'.padEnd(8)} or git S ?`
+    selection = prompt(message, '').toLowerCase();
     
     if (selection == 'r') {
         selection = 'rock';
@@ -32,21 +32,22 @@ function getComputerChoice() {
 function playRound(playerSelect, computerSelect) {
     let p = playerSelect;
     let c = computerSelect;
-    let result = 'Lose';
+    let result = false;
     if (c == p) {
         result = "That's a Tie"
     } else {
         if (p == 'rock' && c == 'scissor') {
-            result = 'Win'
+            result = true
         } else if (p == 'paper' && c == 'rock') {
-                result = 'Win';
+            result = true;
         } else if (p == 'scissor' && c == 'paper') {
-                result = 'Win';
+            result = true;
         }
         
-        if (result.toLowerCase() === 'win'){
+        if (result === true){
             result = `You Win this round! ${p} beats ${c}`;
         } else {
+            // false or empty '' or wrong word 
             result = `You Lose this round! ${c} beats ${p}`;
         }
     }
@@ -76,8 +77,8 @@ function game(maxRound) {
         console.log(`Round Number: ${i+1}/${maxRound}`);
         console.log('You:', player);
         console.log('Computer:', computer);
-        console.log(roundResult);
-        console.log(`Score: ${playerWins} - ${computerWins}`);
+        console.log('Result:', roundResult);
+        console.log(`Score: ${playerWins} - ${computerWins} (You vs Browser)`);
         console.log();
     }
 
