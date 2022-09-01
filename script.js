@@ -1,4 +1,3 @@
-// read user selection
 function getPlayerChoice() {
     message = `${'Rock'.padEnd(8)} or  R ?\n${'Paper'.padEnd(8)} or  P ?\n${'Scissor'.padEnd(8)} or git S ?`
     selection = prompt(message, '').toLowerCase();
@@ -10,12 +9,13 @@ function getPlayerChoice() {
     } else if (selection == 's') {
         selection = 'scissor';
     }
+    
     return selection;
 }
 
-// determine computer selection
 function getComputerChoice() {
     random = Math.floor(Math.random() * 3)
+
     if (random===0){
         random = 'rock';
     } else if (random===1){
@@ -23,16 +23,16 @@ function getComputerChoice() {
     } else {
         random = 'scissor';
     }
+
     return random;
 }   
 
 
-// play a single round (player selection, computer selection)
-// return the winner (result)
 function playRound(playerSelect, computerSelect) {
     let p = playerSelect;
     let c = computerSelect;
     let result = false;
+
     if (c == p) {
         result = "That's a Tie"
     } else {
@@ -55,7 +55,6 @@ function playRound(playerSelect, computerSelect) {
     return result;
 }
 
-// play 5 round of the game
 function playGame(maxRound) {
     let playerWins = 0;
     let computerWins = 0;
@@ -91,7 +90,6 @@ function playGame(maxRound) {
     }
 
     alert('Finished\nReload for another round');
-
 }
 
 playGame(5);
