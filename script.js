@@ -56,7 +56,7 @@ function playRound(playerSelect, computerSelect) {
 }
 
 // play 5 round of the game
-function game(maxRound) {
+function playGame(maxRound) {
     let playerWins = 0;
     let computerWins = 0;
     let roundResult;
@@ -94,4 +94,4 @@ function game(maxRound) {
 
 }
 
-game(5);
+playGame(5);
