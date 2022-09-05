@@ -1,5 +1,5 @@
 function getPlayerChoice() {
-    message = `${'Rock'.padEnd(8)} or  R ?\n${'Paper'.padEnd(8)} or  P ?\n${'Scissor'.padEnd(8)} or git S ?`
+    message = `${'Rock'.padEnd(8)} or  R ?\n${'Paper'.padEnd(8)} or  P ?\n${'Scissor'.padEnd(8)} or S ?`
     selection = prompt(message, '').toLowerCase();
     
     if (selection == 'r') {
@@ -14,17 +14,10 @@ function getPlayerChoice() {
 }
 
 function getComputerChoice() {
-    random = Math.floor(Math.random() * 3)
+    const hand = ['rock', 'paper', 'scissor']
+    let random = Math.floor(Math.random() * 3)
 
-    if (random===0){
-        random = 'rock';
-    } else if (random===1){
-        random = 'paper';
-    } else {
-        random = 'scissor';
-    }
-
-    return random;
+    return hand[random];
 }   
 
 
@@ -47,7 +40,7 @@ function playRound(playerSelect, computerSelect) {
         if (result === true){
             result = `You Win this round! ${p} beats ${c}`;
         } else {
-            // false or empty '' or wrong word 
+            // false or empty '' or wrong word by player
             result = `You Lose this round! ${c} beats ${p}`;
         }
     }
