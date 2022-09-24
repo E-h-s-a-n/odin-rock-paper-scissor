@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+*, *::before, *::after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+}
+.nav-container {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    background-image: linear-gradient(151deg, rgb(0,105,29) 0%, rgb(48,184,15));
+    color: hsl(0, 0%, 18%);
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 900;
+}
+h2 {  
+    line-height: 1.5;
+    font-size: 3.5rem;
+}
+h3 {
+    font-size: 2rem;
+}
+.point-container {
+    background: linear-gradient(162deg, rgb(129,129,129), rgb(180,180,180)), #878787;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 2.5rem;
+    font-family: 'Overpass Mono', monospace;
+    box-shadow: inset rgb(218, 218, 218) 0px 0px 10px ;
+
+}
+.middle-bar {
+    flex: 1 1 0px;
+    max-width: 100%;
+}
+.score-number {
+    border: solid 3px rgb(230, 230, 230);
+    box-shadow: #818181 0px 0px 12px 1px;
+    color: whitesmoke;
+    background-color: rgb(48, 48, 48);
+    font-size: 3.5rem;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.score-text {
+    margin: 0 1.5rem;
+}
+
+.main-container {
+    font-size: 2rem;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 500;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main-container > p {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+.row-button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 2rem;
+}
+.row-button button {
+    position: relative;
+    font-family: 'Overpass Mono', monospace;
+    font-weight: 700;
+    font-size: 1.5rem;
+    background: rgb(52, 189, 17);
+    border-radius: 2rem;
+    border: none;
+    color: rgb(239, 244, 248);
+    box-shadow: #9e9e9e 2px 2px 8px;
+    width: 25%;
+    max-width: 150px;
+    line-height: 4rem;
+    text-decoration: none;
+    text-align: center;
+    transition-duration: 0.2s;
+}
+.row-button button::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    opacity: 0;
+    box-shadow: 0 0 10px 30px rgb(129, 255, 150);
+    transition: all 0.5s;
+    transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+.row-button button:active::after {
+    box-shadow: 0 0 0px 0px rgb(129, 255, 150);
+    opacity: 1;
+    transition: 0s;
+}
+.row-button button:active {
+    top: 1px;
+}
+.hands {
+    display: flex;
+    margin-top: 3rem;
+    justify-content: space-between;
+    gap: 10rem;
+}
+.player-hand,
+.computer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+}
+.image{
+    width: 120px;
+    height: 120px;
+    border: solid 2px rgb(148, 148, 148);
+}
+.hands img{
+    width: 100%;
+    object-fit: contain;
+}
+.round-win{
+    margin-top: 3rem;
+    color: rgb(23, 33, 53);
+    font-size: 3.5rem;
+}

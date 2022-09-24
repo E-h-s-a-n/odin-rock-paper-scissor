@@ -5,10 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <style>
+        .log-boolean,
+        .log-undefined {color: magenta;}
+        .log-object,
+        .log-string {color: orange;}
+        .log-number {color: cyan;}
+        #logger {
+            
+            /* overflow: scroll; */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.3rem;
+        }
+        .logger-container {
+            background-color: rgb(27, 29, 59);
+            box-shadow: rgb(175, 175, 175) 0 0 12px 3px;
+            margin: 0 auto;
+            padding: 5px;
+            max-width: 90%;
+            width: 450px;
+            height: 400px;
+            overflow: scroll;
+        }
+    </style>
 </head>
 <body>
-    <p style="font-size: larger;">Open your browser console to play the game</p>
-    <p>( <b>Ctrl+Shift+K</b> in firefox )</p>
+    <nav>
+        <div class="nav-container">
+            <h2>Rock, Paper, Scissor</h2>
+            <h3>First to reach 5 wins</h3>
+        </div>
+    </nav>
+    <div class="point-container">
+        <div class="score-number player"><p>3</p></div>
+        <div class="score-text">You</div>
+        <div class="middle-bar"></div>
+        <div class="score-text">Enemy</div>
+        <div class="score-number enemy"><p>1</p></div>
+    </div>
+    <div class="main-container">
+        <p>Choose your Weapon!</p>
+        <div class="row-button">
+            <button value="rock" data-value="rock">Rock</button>
+            <button value="paper">Paper</button>
+            <button value="scissor">Scissor</button>
+        </div>
+        <div class="hands">
+            <div class="player">
+                <p id="player-text">You played Rock</p>
+                <div class="image">
+                    <img src="" alt="players hand" >
+                </div>
+            </div>
+            <div class="computer">
+                <p id="enemy-text">The enemy played Paper</p>
+                <div class="image">
+                    <img src="" alt="computer hand">
+                </div>
+            </div>
+        </div>
+        <p class="winner">You Win!</p>
+    </div>
+    <div class="logger-container" hidden>
+        <pre id="logger"><span class="log-undefined">Console Log Here:<br><br></span></pre>
+    </div>
 </body>
 </html>
