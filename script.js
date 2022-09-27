@@ -1,10 +1,16 @@
+/*
 (function (logger) {
     console.old = console.log;
+    
     console.log = function () {
-        var output = "", arg, i;
+        var output = "";
+        var arg;
+        var i;
+
 
         for (i = 0; i < arguments.length; i++) {
             arg = arguments[i];
+            
             output += "<span class=\"log-" + (typeof arg) + "\">";
 
             if (
@@ -23,8 +29,9 @@
         logger.innerHTML += output + "<br>";
         console.old.apply(undefined, arguments);
     };
+    
 })(document.getElementById("logger"));
-
+*/
 
 function getPlayerChoice() {
     const message = `${'Rock'.padEnd(8)} or  R ?\n${'Paper'.padEnd(8)} or  P ?\n${'Scissor'.padEnd(8)} or S ?`
@@ -37,14 +44,12 @@ function getPlayerChoice() {
     } else if (selection == 's') {
         selection = 'scissor';
     }
-    
     return selection;
 }
 
 function getComputerChoice() {
     const hand = ['rock', 'paper', 'scissor']
     const random = Math.floor(Math.random() * 3)
-
     return hand[random];
 }   
 
@@ -65,64 +70,98 @@ function playRound(playerSelect, computerSelect) {
         }
         
         if (result === true){
-            result = `You Win this round! ${p} beats ${c}`;
+            result = `win`;
         } else {
-            // false or empty '' or wrong word by player
-            result = `You Lose this round! ${c} beats ${p}`;
+            result = `lose`; // false or empty '' or wrong word by player
         }
     }
-
     return result;
 }
 
-function playGame(event, maxRound=1) {
-    let playerWins = 0;
-    let computerWins = 0;
-    let roundResult;
-    let player = event.target.value;
-    let computer;
-    
-    while (i=0; i<maxRound; i++){
-        //player = getPlayerChoice();
-        computer = getComputerChoice();
-        roundResult = playRound(player, computer);
+let playerWins = 0;
+let computerWins = 0;
+function playGame() {
 
-        if (roundResult.toLowerCase().search('win') > 0) {
-            playerWins += 1;
-        } else if (roundResult.toLowerCase().search('lose') > 0){
-            computerWins += 1;
-        }
-        // console.log(`Round Number: ${i+1}/${maxRound}`);
-        console.log('You: ' + player);
-        console.log('Computer: ' + computer);
-        console.log('Result: ' + roundResult);
-        console.log(`Score: ${playerWins} - ${computerWins} (You vs Browser)`);
-        console.log();
-    }
+    const player = this.value;
+    const computer = getComputerChoice();
+    const roundResult = playRound(player, computer);
 
-    if (playerWins > computerWins) {
-        console.log('You Win!')
-    } else if (playerWins < computerWins) {
-        console.log('Computer Win!')
+    player_text.textContent = `You Played ${player.replace(/\b(\w)/, m=>m.toUpperCase())}`;
+    computer_text.textContent = `The Enemy Played ${computer.replace(/\b(\w)/, m=>m.toUpperCase())}`
+    if (roundResult == 'win') {
+        playerWins += 1;
+        player_score.textContent = playerWins;
+        player_score.classList.remove('animate');
+        player_score.classList.add('animate');
+        player_score.parentNode.classList.add('score-number-win')
+        round_winner.textContent = 'You Won!'
+    } else if (roundResult == 'lose'){
+        computerWins += 1;
+        computer_score.textContent = computerWins;
+        computer_score.classList.remove('animate');
+        computer_score.classList.add('animate');
+        computer_score.parentNode.classList.add('score-number-win')
+        round_winner.textContent = 'Lose against the Enemy'
     } else {
-        console.log('Tie Match!')
+        round_winner.textContent = 'Tie, try again!'
     }
-    console.log('------------------')
-    // alert('Finished\nReload for another round');
+
+    if (playerWins>4 || computerWins>4){
+        reset_page.classList.add('reset-page-show');
+        reset_page.toggleAttribute('hidden', false)
+    }
 }
 
-const play_btn = document.querySelectorAll('button');
-const player_score = document.querySelector('.score-number .player');
-const computer_score = document.querySelector('.score-number .enemy');
+function startOver() {
+    playerWins = 0;
+    computerWins = 0;
+    player_score.textContent = playerWins;
+    computer_score.textContent = computerWins;
+    player_text.textContent = 'Your hand';
+    computer_text.textContent = "The Enemy's hand";
+    round_winner.textContent = 'Beat the Enemy!';
+    reset_page.classList.remove('reset-page-show');
+    reset_page.classList.add('reset-page-hide');
+    setTimeout(()=>{
+        reset_page.toggleAttribute('hidden', true);
+        reset_btn.classList.remove('reset-page-hide');
+    }, 500);
+}
+
+function removeTransitionClass(t=TRANSITIONS){
+    for (const c of TRANSITIONS) {
+        if (this.classList.contains(c)) {
+            this.classList.remove(c);
+        }
+    }
+}
+
+const play_btn = document.querySelectorAll('.play-btn');
+const player_score = document.querySelector('.score-number.player div');
+const computer_score = document.querySelector('.score-number.enemy div');
 
 const player_text = document.querySelector('#player-text');
 const computer_text = document.querySelector('#enemy-text');
-
 const player_hand = document.querySelector('.player img');
 const computer_hand = document.querySelector('.computer img');
+const round_winner = document.querySelector('.round-win');
 
-const round_winner = document.querySelector('round-win');
+const main_page = document.querySelector('.main')
+const reset_page = document.querySelector('.reset')
+const reset_btn = document.querySelector('.reset-btn')
+
+const TRANSITIONS = ['animate', 'score-number-win']
 
 play_btn.forEach(element => {
-    element.addEventListener('click', playGame)
+    element.addEventListener('click', playGame);
 });
+
+player_score.addEventListener('transitionend' ,removeTransitionClass);
+computer_score.addEventListener('transitionend' ,removeTransitionClass);
+player_score.parentElement.addEventListener('transitionend', removeTransitionClass)
+computer_score.parentElement.addEventListener('transitionend', removeTransitionClass)
+
+reset_btn.addEventListener('click', startOver)
+
+
+// console.clear()

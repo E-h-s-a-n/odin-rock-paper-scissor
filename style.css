@@ -21,7 +21,7 @@ html {
 }
 h2 {  
     line-height: 1.5;
-    font-size: 3.5rem;
+    font-size: 4rem;
 }
 h3 {
     font-size: 2rem;
@@ -46,16 +46,26 @@ h3 {
     color: whitesmoke;
     background-color: rgb(48, 48, 48);
     font-size: 3.5rem;
-    height: 60px;
-    width: 60px;
+    height: 70px;
+    width: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all .2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+.score-number-win {
+    border-color: rgb(29, 207, 29);
+}
+.score-number div {
+    transition: all .2s ease-in-out;
+}
+.animate {
+    transform: scale(1.5);
 }
 .score-text {
     margin: 0 1.5rem;
+    position: relative;
 }
-
 .main-container {
     font-size: 2rem;
     font-family: 'Source Code Pro', monospace;
@@ -69,7 +79,6 @@ h3 {
     font-size: 3rem;
     margin-bottom: 20px;
     text-align: center;
-
 }
 .row-button {
     display: flex;
@@ -86,7 +95,7 @@ h3 {
     border-radius: 2rem;
     border: none;
     color: rgb(239, 244, 248);
-    box-shadow: #9e9e9e 2px 2px 8px;
+    box-shadow: rgba(1, 173, 1, 0.39) -2px 2px 20px;
     width: 25%;
     max-width: 150px;
     line-height: 4rem;
@@ -113,19 +122,23 @@ h3 {
     transition: 0s;
 }
 .row-button button:active {
-    top: 1px;
+    transform: scale(.9);
+    background-color: hsl(108, 83%, 35%);
+    box-shadow:rgba(1, 173, 1, 0.3) -2px 2px 20px;
 }
 .hands {
     display: flex;
     margin-top: 3rem;
     justify-content: space-between;
-    gap: 10rem;
+    gap: 8rem;
 }
 .player-hand,
 .computer {
+    flex: 0 1 160px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     gap: 1rem;
     font-size: 1.5rem;
 }
@@ -142,4 +155,62 @@ h3 {
     margin-top: 3rem;
     color: rgb(23, 33, 53);
     font-size: 3.5rem;
+}
+.reset-page-show {
+    animation: 0.5s fadein;
+}
+
+.reset-page-hide {
+    animation: 0.5s fadeout forwards;
+}
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.game-over{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    height: 100vh;
+    width: 100vw;
+    background-color: hsla(0, 0%, 19%, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.reset-btn{
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 900;
+    font-size: 2rem;
+    color: rgb(255, 255, 255);
+    border: none;
+    transition: all 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 39%, #FC4F4F 80%, #00C0FF 100%);
+}
+
+.reset-btn::after{
+    content: attr(value);
+    background-color: black;
+    padding: 6px 12px;
+    margin: 4px;
+}
+.reset-btn:active {
+    transform: scale(0.9);
 }
