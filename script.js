@@ -107,8 +107,9 @@ function playGame() {
     }
 
     if (playerWins>4 || computerWins>4){
-        reset_page.classList.add('reset-page-show');
-        reset_page.toggleAttribute('hidden', false)
+        setTimeout(()=>{
+            reset_page.style.visibility = 'visible';
+        }, 0)
     }
 }
 
@@ -120,12 +121,8 @@ function startOver() {
     player_text.textContent = 'Your hand';
     computer_text.textContent = "The Enemy's hand";
     round_winner.textContent = 'Beat the Enemy!';
-    reset_page.classList.remove('reset-page-show');
-    reset_page.classList.add('reset-page-hide');
-    setTimeout(()=>{
-        reset_page.toggleAttribute('hidden', true);
-        reset_btn.classList.remove('reset-page-hide');
-    }, 500);
+    
+    reset_page.style.visibility = 'hidden';
 }
 
 function removeTransitionClass(t=TRANSITIONS){
@@ -162,6 +159,5 @@ player_score.parentElement.addEventListener('transitionend', removeTransitionCla
 computer_score.parentElement.addEventListener('transitionend', removeTransitionClass)
 
 reset_btn.addEventListener('click', startOver)
-
 
 // console.clear()
