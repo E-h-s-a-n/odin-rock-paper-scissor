@@ -156,8 +156,6 @@ h3 {
     color: rgb(23, 33, 53);
     font-size: 3.5rem;
 }
-
-
 .reset-page-hide {
     visibility: hidden;
     position: fixed;
@@ -167,7 +165,6 @@ h3 {
     height: 100vh;
     width: 100vw;
     background-color: hsla(0, 0%, 0%, 0.801);
-    visibility: visible;
 }
 .game-over{
     position: relative;
@@ -192,7 +189,6 @@ h3 {
         background-position: 152px;
     }
 }
-
 .reset-btn::after{
     content: attr(value);
     background-color: black;
