@@ -106,10 +106,12 @@ function playGame() {
         round_winner.textContent = 'Tie, try again!'
     }
 
-    if (playerWins>4 || computerWins>4){
-        setTimeout(()=>{
-            reset_page.style.visibility = 'visible';
-        }, 0)
+    if (playerWins > 4){
+        reset_text.classList.add('reset-text-win')
+        reset_page.style.visibility = 'visible';
+    } else if (computerWins > 4){
+        reset_text.classList.add('reset-text-lose')
+        reset_page.style.visibility = 'visible';
     }
 }
 
@@ -121,12 +123,12 @@ function startOver() {
     player_text.textContent = 'Your hand';
     computer_text.textContent = "The Enemy's hand";
     round_winner.textContent = 'Beat the Enemy!';
-    
     reset_page.style.visibility = 'hidden';
+    reset_text.classList.remove('reset-text-win', 'reset-text-lose')
 }
 
-function removeTransitionClass(t=TRANSITIONS){
-    for (const c of TRANSITIONS) {
+function removeTransitionClass(ev, t=TRANSITIONS){
+    for (const c of t) {
         if (this.classList.contains(c)) {
             this.classList.remove(c);
         }
@@ -143,11 +145,12 @@ const player_hand = document.querySelector('.player img');
 const computer_hand = document.querySelector('.computer img');
 const round_winner = document.querySelector('.round-win');
 
-const main_page = document.querySelector('.main')
-const reset_page = document.querySelector('.reset')
-const reset_btn = document.querySelector('.reset-btn')
+const main_page = document.querySelector('.main');
+const reset_page = document.querySelector('.reset');
+const reset_btn = document.querySelector('.reset-btn');
+const reset_text = document.querySelector('.reset-text');
 
-const TRANSITIONS = ['animate', 'score-number-win']
+const TRANSITIONS = ['animate', 'score-number-win'];
 
 play_btn.forEach(element => {
     element.addEventListener('click', playGame);
@@ -155,9 +158,6 @@ play_btn.forEach(element => {
 
 player_score.addEventListener('transitionend' ,removeTransitionClass);
 computer_score.addEventListener('transitionend' ,removeTransitionClass);
-player_score.parentElement.addEventListener('transitionend', removeTransitionClass)
-computer_score.parentElement.addEventListener('transitionend', removeTransitionClass)
-
-reset_btn.addEventListener('click', startOver)
-
-// console.clear()
+player_score.parentElement.addEventListener('transitionend', removeTransitionClass);
+computer_score.parentElement.addEventListener('transitionend', removeTransitionClass);
+reset_btn.addEventListener('click', startOver);

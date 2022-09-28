@@ -156,6 +156,7 @@ h3 {
     color: rgb(23, 33, 53);
     font-size: 3.5rem;
 }
+/* -------- Reset Page -------- */
 .reset-page-hide {
     visibility: hidden;
     position: fixed;
@@ -168,10 +169,11 @@ h3 {
 }
 .game-over{
     position: relative;
-    top: 60vh;
+    top: 50vh;
     display: flex;
-    justify-content: center;
-    /* align-items: center; */
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
 }
 .reset-btn{
     font-family: 'Source Code Pro', monospace;
@@ -181,7 +183,7 @@ h3 {
     border: none;
     transition: all 0.1s;
     display: flex;
-    background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 39%, #FC4F4F 80%, #00C0FF 100%);
+    background-image: linear-gradient(70deg, #00C0FF 0%, #FFCF00 39%, #FC4F4F 80%, #00C0FF 100%);
     animation: button-animate 1s infinite linear;
 }
 @keyframes button-animate {
@@ -197,4 +199,25 @@ h3 {
 }
 .reset-btn:active {
     transform: scale(0.9);
+}
+.reset-text {
+    font-family: 'Source Code Pro', monospace;
+    position: relative;
+    bottom: 3rem;
+    text-align: center;
+    display: flex;
+}
+.reset-text-win{
+    color: rgb(71, 238, 71);
+    text-shadow: #fcfcfc 1px 1px 1px;
+}
+.reset-text-win::before {
+    content: "You have Won the battle :)";
+}
+.reset-text-lose{
+    color: red;
+    text-shadow: #fcfcfc 1px 1px 1px;
+}
+.reset-text-lose::before{
+    content: "You've Lost the battle :(";
 }
