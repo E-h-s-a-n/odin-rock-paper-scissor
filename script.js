@@ -106,10 +106,10 @@ function playGame() {
         round_winner.textContent = 'Tie, try again!'
     }
 
-    if (playerWins > 4){
+    if (playerWins > 2){
         reset_text.classList.add('reset-text-win')
         reset_page.style.visibility = 'visible';
-    } else if (computerWins > 4){
+    } else if (computerWins > 2){
         reset_text.classList.add('reset-text-lose')
         reset_page.style.visibility = 'visible';
     }
